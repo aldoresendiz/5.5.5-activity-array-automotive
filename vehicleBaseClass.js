@@ -52,6 +52,7 @@ class Vehicle {
         }
     }
     stop() {
+        console.log("Stopping the car now")
         this.started = false;
     }
 
@@ -89,3 +90,47 @@ class Vehicle {
 module.exports = {
     Vehicle
 }
+
+class Car extends Vehicle {
+    constructor(make, model, year, color, mileage, maximumPassengers, passengers, numberOfWheels, maximumSpeed, fuel, scheduleService) {
+        super(make, model, year, color, mileage);
+        this.maximumPassengers = 5;
+        this.passengers = 0;
+        this.numberOfWheels = 4;
+        this.maximumSpeed = 160;
+        this.fuel = 10;
+        this.scheduleService = false;
+    }
+
+    loadPassenger(num) {
+
+    }
+
+    start() {
+        if (this.started) {
+            console.log("Car is already started!!!");
+            return;
+        }
+        let enoughGas = this.fuel > 0 ? true : false;
+        if (enoughGas) {
+            this.started = true;
+            console.log("Engine started!")
+        }
+        else {
+            console.log("Tank is EMPTY!")
+        }
+        return (enoughGas);
+    }
+
+    callForService() {
+        this.scheduleService = this.mileage > 30000 ? true : false;
+        return (this.scheduleService);
+    }
+}
+
+let newCar = new Car("Dodge", "Stratus", 2006, 10000);
+
+newCar.start();
+newCar.start();
+newCar.stop();
+newCar.callForService();
